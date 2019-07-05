@@ -1,0 +1,34 @@
+# Although this looks like json, it's actual python
+# but we only allow python data structures (and comments)
+# Can't have comments in standard json.
+{
+  # Phillips hue bridge information
+  "hue": {
+    # hue bridge ip address
+    "192.168.i.11": {
+      # hue bridge magic number. See the Phillips Hue API
+      # documentation for more information
+      "username": "2c58f360000000022222234567890abc"
+    }
+  },
+  # voip.ms account information
+  "account": {
+    "sub": "11223344_313",
+    "phone": "3135551212",
+  },
+  # voip.ms api information
+  "api": {
+    # The IPs that the voip.ms api allows
+    "allowed_ips": ["47.88.12.13","12.13.14.15"],
+    "url": "https://voip.ms/api/v1/rest.php",
+    "user": "foo@bar.com",
+    "password": "mySpecialPassword",
+  },
+  # phone numbers of cell phones that are allowed to text us
+  "allowed_senders": {
+    # regular phones (10 digits) can only cause simple actions
+    "regular": ["2125551212", "2125551314"],
+    # special phones (10 digits) can do additional things
+    "special": ["9165558765", "9165557654"],
+  },
+}
