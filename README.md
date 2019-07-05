@@ -6,25 +6,27 @@ takes action based on the sender and/or content of the message.
 
 ## Getting Started
 
-There are three directories:
-
-* IRdefender - Code which defends an area and provides a web page for control.
-* IRrecvDemo - Code to determine the protocol of the laser tag.
-* IRsendDemo - Code to test out the firing code found in IRrecvDemo.
 
 ### Prerequisites
 
-This directory has python 3 code to handle
-a callback from voip.ms when a new sms
-message is available to be handled.
+This repository uses Docker.
 
-The server lives at port 8321 and it is intended to be
-exposed behind a reverse proxy such as nginx with TLS encryption.
+This repository creates a server. If the server is going
+to be exposed to the internet, it is important to understand
+the risks and take precautions. This generally includes
+a reverse proxy in front of the server (such as nginx)
+and encrypting communications between clients and servers
+via TLS (such as letsencrypt). Finally, tools like
+fail2ban are useful to limit unexpected access attempts
+upon the server.
 
-The docker image exposes port 8321 and which can then
-be exposed to nginx.
+The server lives (by default) at port 8321. The choice
+of port for the server is defined in main.py
 
-The docker images needs access to various configuration
+The docker image exposes port 8321 (via Dockerfile_sms)
+which can then be exposed to your reverse proxy.
+
+The docker image needs access to various configuration
 information (such as hue bridge password and voip account information)
 which is done by mapping a directory on the host onto /opt/external in
 the docker image. The path to the configuration file (as seen from

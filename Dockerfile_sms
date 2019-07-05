@@ -1,0 +1,25 @@
+FROM debian:stretch-slim
+
+# Avoid debconf errors.
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TERM=linux
+
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    apt-get install -y python3 python3-apsw python3-requests
+RUN mkdir -p /opt/external
+RUN mkdir -p /opt/bin
+COPY start_sms.sh /opt/bin
+COPY *.py /opt/bin/
+
+# create a map between a user id and information. We mostly
+# don't care about the mapping but in case other tools do care
+# we add one here.
+RUN echo "special_sms:*:1001:1001:docker,,,:/opt/bin:/bin/bash" >> /etc/passwd
+RUN echo "special_sms:x:1001" >> /etc/group
+RUN chown -R 1001.1001 /opt/bin
+
+# The python server listens on port 8321
+EXPOSE 8321/tcp
+WORKDIR /opt/bin
+ENTRYPOINT /opt/bin/start_sms.sh
