@@ -1,5 +1,5 @@
 #!/bin/bash
-CONFIG_DIRECTORY=~/src/sms_action/config
+CONFIG_DIRECTORY=~/src/smsActions/config
 
 docker stop dsms
 docker rm dsms

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_DIRECTORY=~/src/sms_action/config
+CONFIG_DIRECTORY=~/src/smsActions/config
 
 # Clean up any old stuff lying around.
 docker stop dsms

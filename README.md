@@ -6,6 +6,20 @@ takes action based on the sender and/or content of the message.
 
 ## Getting Started
 
+Create the Docker image by running the build_docker_sms.py script.
+
+Next create a new configuration file in the config directory. One
+can use the example.txt file as a template.
+
+Finally, run the container image. There are two helper scripts
+for this which may need to be modified depending on the location
+of the cloned repository.
+
+* run_docker_sms.sh - starts a docker image which
+will restart itself even after reboot
+* run_docker_test.sh - starts up the docker container but starts
+up a bash shell instead of the python program. This can be used
+for debugging and testing.
 
 ### Prerequisites
 
