@@ -265,22 +265,26 @@ class AccessSms:
     """Get bridge info."""
     bip = sorted(self.bridge.keys())[0]
     code = self.bridge[bip]["username"]
+    _LOGGER.info("hue bringe info bridge ip: %s code: %s", bip, code)
     return (bip, code)
 
   @staticmethod
   def set_light_by_hsl(bridge, lid, hsl, trans):
     """Turn on a light and set it to a particular color."""
+    _LOGGER.info("set_light_by_hsl id: %s hsl: %s", lid, hsl)
     bridge.lights[lid]("state", hue=hsl[0], sat=hsl[1], bri=hsl[2],
                        on=True, transitiontime=trans, http_method="put")
 
   @staticmethod
   def turn_light_off(bridge, lid, trans):
     """Turn off a light."""
+    _LOGGER.info("turn_light_off id: %s", lid)
     bridge.lights[lid]("state", on=False, transitiontime=trans,
                        http_method="put")
 
   def page(self):
     """Action to take when a page occurs."""
+    _LOGGER.info("It is time to page")
     self.page_light(True)
 
   def page_light(self, turn_on):
