@@ -40,6 +40,8 @@ class AccessSms:
     allowed = cfg["allowed_senders"]
     self.special_senders = allowed["special"]
     STATIC_ALLOWED_SENDERS = allowed["special"] + allowed["regular"]
+    _LOGGER.info("special senders: %s", self.special_senders)
+    _LOGGER.info("allowed senders: %s", STATIC_ALLOWED_SENDERS)
 
     self.bridge = cfg["hue"]
 
